@@ -11,5 +11,7 @@ namespace SuperHeroApp.Entities
         public string ResultsFor { get; set; }
 
         public List<SuperHero> Results { get; set; }
+
+        public string Error { get; set; }
     }
 }
