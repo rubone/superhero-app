@@ -1,8 +1,65 @@
-﻿@{
+﻿@model SearchViewModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h5 class="display-4">Search your favorite Superhero</h5>
+    <form asp-action="Index" asp-controller="Home">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Type the name" id="filter" name="filter">&nbsp;
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit" value="Search">
+                    &nbsp;Search
+                </button>
+            </span>
+        </div>
+     </form>
+    <br/>
+    <section id="content-result">
+        <div class="container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Race</th>
+                        <th scope="col">Picture</th>
+                    </tr>
+
+                </thead>
+                @if (@Model.SearchResult.Results != null)
+                {
+                    <tbody>
+                        @foreach (var result in Model.SearchResult.Results)
+                        {
+                            <tr>
+                                <th scope="row">@result.Id</th>
+                                <td>@result.Name</td>
+                                <td>@result.Biography.FullName</td>
+                                <td>@result.Appearance.Gender</td>
+                                <td>@result.Appearance.Race</td>
+                                <td>
+                                    <img src="@result.Image.Url" style="height: 150px; width: 100px;" />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                }
+                else
+                {
+                    <tbody>
+                        <tr>
+                            <td colspan="5">
+                                <span class="alert-danger">Character name not found </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                }
+            </table>
+        </div>
+    </section>
 </div>
