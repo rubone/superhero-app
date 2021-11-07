@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SuperHeroApp.Models;
 using SuperHeroApp.Services;
 
 namespace SuperHeroApp.Controllers
@@ -16,9 +17,12 @@ namespace SuperHeroApp.Controllers
 
         [Route("{id}")]
         public IActionResult Index(int Id)
-        {
-            var identify = Id;
-            return View();
+        {            
+            var result = _superHeroService.GetSuperHero(Id);
+            CharacterViewModel model = new CharacterViewModel();
+            model.SuperHero = result.Result;
+
+            return View(model);
         }
     }
 }
