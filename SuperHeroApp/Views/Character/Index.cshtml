@@ -1,5 +1,105 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model CharacterViewModel
+
 @{
+    ViewData["Title"] = "Character Page";
 }
+
+<div class="text-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-7 col-lg-4 mb-5 mb-lg-0">
+                <div class="card border-0 shadow">
+                    <img src="@Model.SuperHero.Image.Url">
+                    <div class="card-body p-1-9 p-xl-5">
+                        <div class="mb-4">
+                            <h3 class="h4 mb-0">@Model.SuperHero.Name</h3>
+                            <span class="text-primary">@Model.SuperHero.Biography.FullName</span>
+                        </div>
+                        <ul class="list-unstyled mb-4">
+                            <li class="mb-3">@Model.SuperHero.Biography.PlaceOfBirth</li>
+                            <li>@Model.SuperHero.Biography.Publisher</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="wow fadeIn">
+                    <div class="text-start mb-1-6 wow fadeIn">
+                        <h2 class="mb-0 text-primary">Power Stats</h2>
+                    </div>
+                    <div class="progress-style1">
+                        <div class="progress-text">
+                            <div class="row">
+                                <div class="col-6 fw-bold">Intelligence</div>
+                                <div class="col-6 text-end">@Model.SuperHero.Powerstats.Intelligence</div>
+                            </div>
+                        </div>
+                        <div class="custom-progress progress rounded-3 mb-4">
+                            <div class="animated custom-bar progress-bar slideInLeft" style="width:@Model.SuperHero.Powerstats.Intelligence%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
+                        </div>
+
+                        <div class="progress-text">
+                            <div class="row">
+                                <div class="col-6 fw-bold">Strength</div>
+                                <div class="col-6 text-end">@Model.SuperHero.Powerstats.Strength</div>
+                            </div>
+                        </div>
+                        <div class="custom-progress progress rounded-3 mb-4">
+                            <div class="animated custom-bar progress-bar slideInLeft" style="width:@Model.SuperHero.Powerstats.Strength%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
+                        </div>
+
+                        <div class="progress-text">
+                            <div class="row">
+                                <div class="col-6 fw-bold">Speed</div>
+                                <div class="col-6 text-end">@Model.SuperHero.Powerstats.Speed</div>
+                            </div>
+                        </div>
+                        <div class="custom-progress progress rounded-3 mb-4">
+                            <div class="animated custom-bar progress-bar slideInLeft" style="width:@Model.SuperHero.Powerstats.Speed%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
+                        </div>
+
+                        <div class="progress-text">
+                            <div class="row">
+                                <div class="col-6 fw-bold">Durability</div>
+                                <div class="col-6 text-end">@Model.SuperHero.Powerstats.Durability</div>
+                            </div>
+                        </div>
+                        <div class="custom-progress progress rounded-3 mb-4">
+                            <div class="animated custom-bar progress-bar slideInLeft" style="width:@Model.SuperHero.Powerstats.Durability%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
+                        </div>
+
+                        <div class="progress-text">
+                            <div class="row">
+                                <div class="col-6 fw-bold">Power</div>
+                                <div class="col-6 text-end">@Model.SuperHero.Powerstats.Power</div>
+                            </div>
+                        </div>
+                        <div class="custom-progress progress rounded-3 mb-4">
+                            <div class="animated custom-bar progress-bar slideInLeft" style="width:@Model.SuperHero.Powerstats.Power%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
+                        </div>
+
+                        <div class="progress-text">
+                            <div class="row">
+                                <div class="col-6 fw-bold">Combat</div>
+                                <div class="col-6 text-end">@Model.SuperHero.Powerstats.Combat</div>
+                            </div>
+                        </div>
+                        <div class="custom-progress progress rounded-3 mb-4">
+                            <div class="animated custom-bar progress-bar slideInLeft" style="width:@Model.SuperHero.Powerstats.Combat%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="mb-5 wow fadeIn">
+                    <div class="text-start mb-1-6">
+                        <h2 class="h1 mb-0 text-primary">Aliases</h2>
+                    </div>
+                    @for(int x =0; x < Model.SuperHero.Biography.Aliases.Count; x++)
+                    {
+                        <span class="badge badge-success">@Model.SuperHero.Biography.Aliases[x]</span>
+                    }
+                </div>
+            </div>
+         </div>
+    </div>
+</div>
