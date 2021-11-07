@@ -28,6 +28,7 @@
                         <th scope="col">Gender</th>
                         <th scope="col">Race</th>
                         <th scope="col">Picture</th>
+                        <th></th>
                     </tr>
 
                 </thead>
@@ -44,6 +45,9 @@
                                 <td>@result.Appearance.Race</td>
                                 <td>
                                     <img src="@result.Image.Url" style="height: 150px; width: 100px;" />
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Detail", "Index", "character", new { Id = result.Id})
                                 </td>
                             </tr>
                         }
