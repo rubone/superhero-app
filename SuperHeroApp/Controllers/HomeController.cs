@@ -12,12 +12,12 @@ namespace SuperHeroApp.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        private readonly ISuperHeroeService _superHeroeService;
+        private readonly ISuperHeroService _superHeroService;
 
-        public HomeController(ILogger<HomeController> logger, ISuperHeroeService superHeroeService)
+        public HomeController(ILogger<HomeController> logger, ISuperHeroService superHeroService)
         {
             _logger = logger;
-            _superHeroeService = superHeroeService;
+            _superHeroService = superHeroService;
         }
 
         public IActionResult Index()
@@ -31,7 +31,7 @@ namespace SuperHeroApp.Controllers
         [HttpPost]
         public IActionResult Index(string filter)
         {
-            var result = _superHeroeService.SearchSuperHero(filter);
+            var result = _superHeroService.SearchSuperHero(filter);
             SearchViewModel model = new SearchViewModel();
             model.SearchResult = result.Result;
             return View(model);

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SuperHeroApp.Services
 {
-    public class SuperHeroeService : ISuperHeroeService
+    public class SuperHeroService : ISuperHeroService
     {
         protected readonly IConfiguration _configuration;
 
@@ -16,7 +16,7 @@ namespace SuperHeroApp.Services
 
         private readonly string _baseAddress;
 
-        public SuperHeroeService(IConfiguration configuration)
+        public SuperHeroService(IConfiguration configuration)
         {
             _configuration = configuration;
             _baseUrl = _configuration.GetSection("SuperHeroAPI").GetSection("BaseURL").Value;

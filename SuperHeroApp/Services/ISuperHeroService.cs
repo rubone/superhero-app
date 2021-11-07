@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace SuperHeroApp.Services
 {
-    public interface ISuperHeroeService
+    public interface ISuperHeroService
     {
         Task<SearchResult> SearchSuperHero(string filter);
     }

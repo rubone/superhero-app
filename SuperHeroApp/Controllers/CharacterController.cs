@@ -7,11 +7,11 @@ namespace SuperHeroApp.Controllers
     public class CharacterController : Controller
     {
 
-        private readonly ISuperHeroeService _superHeroeService;
+        private readonly ISuperHeroService _superHeroService;
 
-        public CharacterController(ISuperHeroeService superHeroeService)
+        public CharacterController(ISuperHeroService superHeroService)
         {
-            _superHeroeService = superHeroeService;
+            _superHeroService = superHeroService;
         }
 
         [Route("{id}")]
