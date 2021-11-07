@@ -7,5 +7,7 @@ namespace SuperHeroApp.Services
     public interface ISuperHeroService
     {
         Task<SearchResult> SearchSuperHero(string filter);
+
+        Task<SuperHero> GetSuperHero(int id);
     }
 }

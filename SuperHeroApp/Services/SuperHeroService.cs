@@ -49,5 +49,29 @@ namespace SuperHeroApp.Services
                 return null;
             }
         }
+
+        public Task<SuperHero> GetSuperHero(int id)
+        {
+            var client = new HttpClient();
+
+            client.BaseAddress = new Uri(_baseAddress);
+
+            var response = client.GetAsync(id.ToString());
+            response.Wait();
+
+            var result = response.Result;
+
+            if (result.IsSuccessStatusCode)
+            {
+                var superHero = result.Content.ReadAsAsync<SuperHero>();
+                superHero.Wait();
+
+                return Task.FromResult(superHero.Result);
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }
