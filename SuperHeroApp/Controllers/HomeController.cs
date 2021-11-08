@@ -43,5 +43,19 @@ namespace SuperHeroApp.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [Route("/Home/HandleError/{code:int}")]
+        public IActionResult HandleError(int code)
+        {
+            ViewData["ErrorMessage"] = $"Error occurred. The ErrorCode is: {code}";           
+            if (code == 404)
+            {
+                return View("~/Views/Shared/404.cshtml");
+            }
+            else
+            {
+                return View("~/Views/Shared/HandleError.cshtml");
+            }            
+        }
     }
 }
