@@ -33,6 +33,7 @@ namespace SuperHeroApp.Controllers
         {
             var result = _superHeroService.SearchSuperHero(filter);
             SearchViewModel model = new SearchViewModel();
+            model.Filter = filter;
             model.SearchResult = result.Result;
             return View(model);
         }

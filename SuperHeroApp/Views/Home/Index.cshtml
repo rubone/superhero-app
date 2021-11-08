@@ -8,7 +8,7 @@
     <h5 class="display-4">Search your favorite Superhero</h5>
     <form asp-action="Index" asp-controller="Home">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Type the name" id="filter" name="filter">&nbsp;
+            <input type="text" class="form-control" placeholder="Type the name" id="filter" name="filter" value="@Model.Filter">&nbsp;
             <span class="input-group-btn">
                 <button class="btn btn-primary" type="submit" value="Search">
                     &nbsp;Search
