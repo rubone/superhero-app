@@ -7,7 +7,6 @@ namespace SuperHeroApp.Controllers
     [Route("[controller]")]
     public class CharacterController : Controller
     {
-
         private readonly ISuperHeroService _superHeroService;
 
         public CharacterController(ISuperHeroService superHeroService)
@@ -22,7 +21,15 @@ namespace SuperHeroApp.Controllers
             CharacterViewModel model = new CharacterViewModel();
             model.SuperHero = result.Result;
 
-            return View(model);
+            if (!result.Result.Response.Equals("error"))
+            {
+                return View(model);
+            }
+            else
+            {                
+                HttpContext.Response.StatusCode = 404;
+                return Redirect("~/Views/Shared/404.cshtml");
+            }            
         }
     }
 }
