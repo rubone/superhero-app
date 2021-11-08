@@ -48,7 +48,7 @@
                                     <img src="@result.Image.Url" style="height: 150px; width: 100px;" />
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Detail", "Index", "character", new { Id = result.Id})
+                                    @Html.ActionLink("View Detail", "Index", "character", new { Id = result.Id}, new { @class= "btn btn-outline-info" })
                                 </td>
                             </tr>
                         }
