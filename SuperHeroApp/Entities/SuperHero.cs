@@ -18,5 +18,9 @@ namespace SuperHeroApp.Entities
         public Connections Connections { get; set; }
 
         public Image Image { get; set; }
+
+        public string Response { get; set; }
+
+        public string Error { get; set; }
     }
 }
