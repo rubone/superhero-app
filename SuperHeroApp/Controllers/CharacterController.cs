@@ -18,8 +18,10 @@ namespace SuperHeroApp.Controllers
         public IActionResult Index(int Id)
         {            
             var result = _superHeroService.GetSuperHero(Id);
-            CharacterViewModel model = new CharacterViewModel();
-            model.SuperHero = result.Result;
+            CharacterViewModel model = new()
+            {
+                SuperHero = result.Result
+            };
 
             if (!result.Result.Response.Equals("error"))
             {

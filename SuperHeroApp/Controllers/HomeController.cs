@@ -22,8 +22,10 @@ namespace SuperHeroApp.Controllers
 
         public IActionResult Index()
         {
-            SearchViewModel model = new SearchViewModel();
-            model.SearchResult = new SearchResult();
+            SearchViewModel model = new()
+            {
+                SearchResult = new SearchResult()
+            };
             model.SearchResult.Results = new List<SuperHero>();
             return View(model);
         }
@@ -32,9 +34,11 @@ namespace SuperHeroApp.Controllers
         public IActionResult Index(string filter)
         {
             var result = _superHeroService.SearchSuperHero(filter);
-            SearchViewModel model = new SearchViewModel();
-            model.Filter = filter;
-            model.SearchResult = result.Result;
+            SearchViewModel model = new()
+            {
+                Filter = filter,
+                SearchResult = result.Result
+            };
             return View(model);
         }
 
