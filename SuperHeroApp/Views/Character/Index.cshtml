@@ -4,7 +4,6 @@
     ViewData["Title"] = "Character Page";
 }
 
-
 <div class="text-center">
     <div class="container">
         <div class="row text-left" style="padding-bottom: 1px;">
@@ -33,168 +32,18 @@
                     <div class="text-start mb-1-6 wow fadeIn">
                         <h2 class="mb-0 text-primary">Power Stats</h2>
                     </div>
-                    <div class="progress-style1">
-                        <div class="progress-text">
-                            <div class="row">
-                                <div class="col-6 fw-bold">Intelligence</div>
-                                <div class="col-6 text-end">@Model.SuperHero.Powerstats.Intelligence</div>
-                            </div>
-                        </div>
-                        <div class="progress mb-4">
-                            @if (@Model.SuperHero.Powerstats.Intelligence.Equals("null") || (Model.SuperHero.Powerstats.Intelligence.Length == 0))
-                            {
-                                <div class="progress-bar bg-danger" style="width:0%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
+                    <div class="progress-style1">                        
+                        @{ PowerStatsBar("Intelligence", Model.SuperHero.Powerstats.Intelligence);}
 
-                            }
-                            else if (Convert.ToInt32(@Model.SuperHero.Powerstats.Intelligence) <= 30)
-                            {
-                                <div class="progress-bar bg-danger" style="width:@Model.SuperHero.Powerstats.Intelligence%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
-                            }
-                            else if (Convert.ToInt32(@Model.SuperHero.Powerstats.Intelligence) > 30 && Convert.ToInt32(@Model.SuperHero.Powerstats.Intelligence) <= 70)
-                            {
-                                <div class="progress-bar bg-warning" style="width:@Model.SuperHero.Powerstats.Intelligence%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
-                            }
-                            else
-                            {
-                                <div class="progress-bar bg-success" style="width:@Model.SuperHero.Powerstats.Intelligence%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
+                        @{ PowerStatsBar("Strength", Model.SuperHero.Powerstats.Strength);}
 
-                            }
-                        </div>
-                        <div class="progress-text">
-                            <div class="row">
-                                <div class="col-6 fw-bold">Strength</div>
-                                <div class="col-6 text-end">@Model.SuperHero.Powerstats.Strength</div>
-                            </div>
-                        </div>
-                        <div class="progress mb-4">
-                            @if (@Model.SuperHero.Powerstats.Strength.Equals("null") || (Model.SuperHero.Powerstats.Strength.Length == 0))
-                            {
-                                <div class="progress-bar bg-danger" style="width:0%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
+                        @{ PowerStatsBar("Speed", Model.SuperHero.Powerstats.Speed);}
 
-                            }
-                            else if (Convert.ToInt32(@Model.SuperHero.Powerstats.Strength) <= 30)
-                            {
-                                <div class="progress-bar bg-danger" style="width:@Model.SuperHero.Powerstats.Strength%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
-                            }
-                            else if (Convert.ToInt32(@Model.SuperHero.Powerstats.Strength) > 30 && Convert.ToInt32(@Model.SuperHero.Powerstats.Strength) <= 70)
-                            {
-                                <div class="progress-bar bg-warning" style="width:@Model.SuperHero.Powerstats.Strength%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
-                            }
-                            else
-                            {
-                                <div class="progress-bar bg-success" style="width:@Model.SuperHero.Powerstats.Strength%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
+                        @{ PowerStatsBar("Durability", Model.SuperHero.Powerstats.Durability);}
 
-                            }
-                        </div>
+                        @{ PowerStatsBar("Power", Model.SuperHero.Powerstats.Power);}
 
-                        <div class="progress-text">
-                            <div class="row">
-                                <div class="col-6 fw-bold">Speed</div>
-                                <div class="col-6 text-end">@Model.SuperHero.Powerstats.Speed</div>
-                            </div>
-                        </div>
-                        <div class="progress mb-4">
-                            @if (@Model.SuperHero.Powerstats.Speed.Equals("null") || (Model.SuperHero.Powerstats.Speed.Length == 0))
-                            {
-                                <div class="progress-bar bg-danger" style="width:0%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
-
-                            }
-                            else if (Convert.ToInt32(@Model.SuperHero.Powerstats.Speed) <= 30)
-                            {
-                                <div class="progress-bar bg-danger" style="width:@Model.SuperHero.Powerstats.Speed%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
-                            }
-                            else if (Convert.ToInt32(@Model.SuperHero.Powerstats.Speed) > 30 && Convert.ToInt32(@Model.SuperHero.Powerstats.Speed) <= 70)
-                            {
-                                <div class="progress-bar bg-warning" style="width:@Model.SuperHero.Powerstats.Speed%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
-                            }
-                            else
-                            {
-                                <div class="progress-bar bg-success" style="width:@Model.SuperHero.Powerstats.Speed%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
-
-                            }
-                        </div>
-
-                        <div class="progress-text">
-                            <div class="row">
-                                <div class="col-6 fw-bold">Durability</div>
-                                <div class="col-6 text-end">@Model.SuperHero.Powerstats.Durability</div>
-                            </div>
-                        </div>
-                        <div class="progress mb-4">
-                            @if (@Model.SuperHero.Powerstats.Durability.Equals("null") || (Model.SuperHero.Powerstats.Durability.Length == 0))
-                            {
-                                <div class="progress-bar bg-danger" style="width:0%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
-
-                            }
-                            else if (Convert.ToInt32(@Model.SuperHero.Powerstats.Durability) <= 30)
-                            {
-                                <div class="progress-bar bg-danger" style="width:@Model.SuperHero.Powerstats.Durability%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
-                            }
-                            else if (Convert.ToInt32(@Model.SuperHero.Powerstats.Durability) > 30 && Convert.ToInt32(@Model.SuperHero.Powerstats.Durability) <= 70)
-                            {
-                                <div class="progress-bar bg-warning" style="width:@Model.SuperHero.Powerstats.Durability%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
-                            }
-                            else
-                            {
-                                <div class="progress-bar bg-success" style="width:@Model.SuperHero.Powerstats.Durability%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
-
-                            }
-                        </div>
-
-                        <div class="progress-text">
-                            <div class="row">
-                                <div class="col-6 fw-bold">Power</div>
-                                <div class="col-6 text-end">@Model.SuperHero.Powerstats.Power</div>
-                            </div>
-                        </div>
-                        <div class="progress mb-4">
-                            @if (@Model.SuperHero.Powerstats.Power.Equals("null") || (Model.SuperHero.Powerstats.Power.Length == 0))
-                            {
-                                <div class="progress-bar bg-danger" style="width:0%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
-
-                            }
-                            else if (Convert.ToInt32(@Model.SuperHero.Powerstats.Power) <= 30)
-                            {
-                                <div class="progress-bar bg-danger" style="width:@Model.SuperHero.Powerstats.Power%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
-                            }
-                            else if (Convert.ToInt32(@Model.SuperHero.Powerstats.Power) > 30 && Convert.ToInt32(@Model.SuperHero.Powerstats.Power) <= 70)
-                            {
-                                <div class="progress-bar bg-warning" style="width:@Model.SuperHero.Powerstats.Power%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
-                            }
-                            else
-                            {
-                                <div class="progress-bar bg-success" style="width:@Model.SuperHero.Powerstats.Power%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
-
-                            }
-                        </div>
-
-                        <div class="progress-text">
-                            <div class="row">
-                                <div class="col-6 fw-bold">Combat</div>
-                                <div class="col-6 text-end">@Model.SuperHero.Powerstats.Combat</div>
-                            </div>
-                        </div>
-                        <div class="progress mb-4">
-                            @if (@Model.SuperHero.Powerstats.Combat.Equals("null") || (Model.SuperHero.Powerstats.Combat.Length == 0))
-                            {
-                                <div class="progress-bar bg-danger" style="width:0%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
-
-                            }
-                            else if (Convert.ToInt32(@Model.SuperHero.Powerstats.Combat) <= 30)
-                            {
-                                <div class="progress-bar bg-danger" style="width:@Model.SuperHero.Powerstats.Combat%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
-                            }
-                            else if (Convert.ToInt32(@Model.SuperHero.Powerstats.Combat) > 30 && Convert.ToInt32(@Model.SuperHero.Powerstats.Combat) <= 70)
-                            {
-                                <div class="progress-bar bg-warning" style="width:@Model.SuperHero.Powerstats.Combat%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
-                            }
-                            else
-                            {
-                                <div class="progress-bar bg-success" style="width:@Model.SuperHero.Powerstats.Combat%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
-
-                            }
-                        </div>
-
+                        @{ PowerStatsBar("Combat", Model.SuperHero.Powerstats.Combat);}
                     </div>
                 </div>
                 <div class="mb-5 wow fadeIn">
@@ -211,8 +60,45 @@
     </div>
 </div>
 
+@{
+    void PowerStatsBar(string powerStatsName, string powerStatsValue)
+    {
+        <div class="progress-text">
+            <div class="row">
+                <div class="col-6 fw-bold">@powerStatsName</div>
+                @if (@powerStatsValue.Equals("null") || (powerStatsValue.Length == 0))
+                {
+                    <div class="col-6 text-end">0</div>
+                }
+                else
+                {
+                    <div class="col-6 text-end">@powerStatsValue</div>
+                }
+            </div>
+        </div>
+        <div class="progress mb-4">
+            @if (@powerStatsValue.Equals("null") || (@powerStatsValue.Length == 0))
+            {
+                <div class="progress-bar bg-danger" style="width:0%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
+            }
+            else if (Convert.ToInt32(@powerStatsValue) <= 30)
+            {
+                <div class="progress-bar bg-danger" style="width:@powerStatsValue%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
+            }
+            else if (Convert.ToInt32(@powerStatsValue) > 30 && Convert.ToInt32(@powerStatsValue) <= 70)
+            {
+                <div class="progress-bar bg-warning" style="width:@powerStatsValue%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
+            }
+            else
+            {
+                <div class="progress-bar bg-success" style="width:@powerStatsValue%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
+            }
+        </div>
+    }
+}
+
 <script>
     function goBack() {
-      window.history.back();
+        window.history.back();
     }
 </script>
