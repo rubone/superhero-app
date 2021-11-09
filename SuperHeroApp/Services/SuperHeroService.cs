@@ -24,9 +24,18 @@ namespace SuperHeroApp.Services
             _baseAddress = $"{_baseUrl}/{_token}/";
         }
 
-        public Task<SearchResult> SearchSuperHero(string filter)
+        public Task<SearchResult> SearchSuperHero(string filter, HttpMessageHandler httpMessageHandler = null)
         {
-            var client = new HttpClient();
+            HttpClient client;
+
+            if (httpMessageHandler == null)
+            {
+                client = new HttpClient();
+            }
+            else
+            {
+                client = new HttpClient(httpMessageHandler);
+            }            
 
             string searchEndpoint = _configuration.GetSection("SuperHeroAPI").GetSection("Endpoints").GetSection("Search").Value;
 
