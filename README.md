@@ -19,13 +19,15 @@ This project was developed using [ASP.NET Core MVC](https://docs.microsoft.com/e
 - Open the project and find the appsettings.json file, you need to add your Api token that you generated in the previous step.
 
 ```json
-  SuperHeroApi": {
-    "BaseUrl": "SUPERHERO-API",
+{
+  "SuperHeroApi": {
+    "BaseUrl": "https://superheroapi.com/api",
     "Token": "YOUR-TOKEN",
     "Endpoints": {
       "Search": "search"
     }
   }
+}
 ```
 
 - Run the project and enjoy!
