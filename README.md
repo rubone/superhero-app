@@ -2,7 +2,7 @@
 
 This is a Web application where you can find information about your favorite superhero.
 
-This Web App use [SuperHeroes API](https://superheroapi.com), a free accessible API provides a JSON API to get information from their db of Super Heroes and Villains from all universes, all under a single API.
+This Web App use [SuperHeroe API](https://superheroapi.com), a free accessible API provides a JSON API to get information from their db of Super Heroes and Villains from all universes, all under a single API.
 
 ## Requirements
 
