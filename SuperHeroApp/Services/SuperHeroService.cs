@@ -24,7 +24,7 @@ namespace SuperHeroApp.Services
             _baseAddress = $"{_baseUrl}/{_token}/";
         }
 
-        public Task<SearchResult> SearchSuperHero(string filter, HttpMessageHandler httpMessageHandler = null)
+        public async Task<SearchResult> SearchSuperHero(string filter, HttpMessageHandler httpMessageHandler = null)
         {
             HttpClient client;
 
@@ -41,17 +41,11 @@ namespace SuperHeroApp.Services
 
             client.BaseAddress = new Uri(_baseAddress);
 
-            var response = client.GetAsync($"{searchEndpoint}/{filter}");
-            response.Wait();
-
-            var result = response.Result;
+            var result = await client.GetAsync($"{searchEndpoint}/{filter}");            
 
             if (result.IsSuccessStatusCode)
-            {
-                var readTask = result.Content.ReadAsAsync<SearchResult>();
-                readTask.Wait();
-
-                return Task.FromResult(readTask.Result);
+            {                
+                return await result.Content.ReadAsAsync<SearchResult>();
             }
             else
             {
@@ -59,23 +53,17 @@ namespace SuperHeroApp.Services
             }
         }
 
-        public Task<SuperHero> GetSuperHero(int id)
+        public async Task<SuperHero> GetSuperHero(int id)
         {
             var client = new HttpClient();
 
             client.BaseAddress = new Uri(_baseAddress);
 
-            var response = client.GetAsync(id.ToString());
-            response.Wait();
-
-            var result = response.Result;
-
+            var result = await client.GetAsync(id.ToString());
+            
             if (result.IsSuccessStatusCode)
             {
-                var superHero = result.Content.ReadAsAsync<SuperHero>();
-                superHero.Wait();
-
-                return Task.FromResult(superHero.Result);
+                return await result.Content.ReadAsAsync<SuperHero>();                
             }
             else
             {
