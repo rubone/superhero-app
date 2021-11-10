@@ -8,6 +8,6 @@ namespace SuperHeroApp.Services
     {
         Task<SearchResult> SearchSuperHero(string filter, HttpMessageHandler httpMessageHandler = null);
 
-        Task<SuperHero> GetSuperHero(int id);
+        Task<SuperHero> GetSuperHero(int id, HttpMessageHandler httpMessageHandler = null);
     }
 }

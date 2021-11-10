@@ -53,9 +53,18 @@ namespace SuperHeroApp.Services
             }
         }
 
-        public async Task<SuperHero> GetSuperHero(int id)
+        public async Task<SuperHero> GetSuperHero(int id, HttpMessageHandler httpMessageHandler = null)
         {
-            var client = new HttpClient();
+            HttpClient client;
+
+            if (httpMessageHandler == null)
+            {
+                client = new HttpClient();
+            }
+            else
+            {
+                client = new HttpClient(httpMessageHandler);
+            }
 
             client.BaseAddress = new Uri(_baseAddress);
 
