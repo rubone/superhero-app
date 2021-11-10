@@ -32,7 +32,6 @@ namespace SuperHeroApp.Tests
             _section.Setup(m => m.GetSection("BaseURL")).Returns(_sectionBaseURL.Object);
             _section.Setup(m => m.GetSection("Token")).Returns(_sectionToken.Object);
             _section.Setup(m => m.GetSection("Endpoints")).Returns(_sectionEndpoints.Object);
-
             _mock.Setup(m => m.GetSection("SuperHeroAPI")).Returns(_section.Object);
             _mockHttpMessageHandler = new Mock<HttpMessageHandler>(MockBehavior.Strict);
             _service = new SuperHeroService(_mock.Object);
@@ -43,7 +42,8 @@ namespace SuperHeroApp.Tests
         public async Task FilterShouldBeEqualToSearchResultResultsFor()
         {
             //Arrange            
-            _mockHttpMessageHandler.Protected().Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
+            _mockHttpMessageHandler.Protected()
+                .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
                 .ReturnsAsync(
                 new HttpResponseMessage() { 
                     StatusCode = System.Net.HttpStatusCode.OK, 
@@ -58,6 +58,31 @@ namespace SuperHeroApp.Tests
 
             //Assert
             Assert.Equal("batman", searchResult.ResultsFor);
+        }
+        
+        [Fact]
+        public async Task GetSuperHeroByIdShouldBeEqualToResultId()
+        {
+            //Arrange
+            int superheroId = 69;
+            _mockHttpMessageHandler.Protected()
+                .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
+                .ReturnsAsync(
+               new HttpResponseMessage()
+               {
+                   StatusCode = System.Net.HttpStatusCode.OK,
+                   Content = new StringContent(
+                       "{ \"response\": \"succes\", \"id\": \"69\", \"name\":  \" batman\", \" powerstats\": { \"intelligence \": \"50\" } }",
+                       Encoding.UTF8,
+                       "application/json")
+               });
+
+            //Act
+            var result = await _service.GetSuperHero(superheroId, _mockHttpMessageHandler.Object);            
+
+            //Assert
+            Assert.Equal(superheroId, int.Parse(result.Id));
+
         }
     }
 }
