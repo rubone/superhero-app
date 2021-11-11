@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using SuperHeroApp.Entities;
 using SuperHeroApp.Models;
 using SuperHeroApp.Services;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -30,17 +31,30 @@ namespace SuperHeroApp.Controllers
             return View(model);
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult Index(string filter)
         {
-            var result = _superHeroService.SearchSuperHero(filter);
-            SearchViewModel model = new()
+            if (!string.IsNullOrEmpty(filter))
             {
-                Filter = filter,
-                SearchResult = result.Result
-            };
-            return View(model);
-        }
+                var result = _superHeroService.SearchSuperHero(filter);
+                SearchViewModel model = new()
+                {
+                    Filter = filter,
+                    SearchResult = result.Result
+                };
+                return View(model);
+            }
+            else
+            {
+                SearchViewModel model = new()
+                {
+                    SearchResult = new SearchResult()
+                };
+                model.SearchResult.Results = new List<SuperHero>();
+                return View(model);
+            }
+        }            
+            
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

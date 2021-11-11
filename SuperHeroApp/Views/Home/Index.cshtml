@@ -7,7 +7,7 @@
 <div class="text-center">
     <h1 class="display-4">Welcome!</h1>
     <br/>
-    <form asp-action="Index" asp-controller="Home">
+    <form asp-action="Index" asp-controller="Home" method="get">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Search your favorite superhero" id="filter" name="filter" value="@Model.Filter">&nbsp;
             <span class="input-group-btn">
